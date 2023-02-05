@@ -29,6 +29,7 @@ inputArray.textContent = "2019-03-01 08:55:28\n" +
     "2017-03-17 19:30:12";
 
 const convertDate = (dateString) => {
+    const dateFormat = document.getElementById("dateFormat").value;
     const date = new Date(dateString);
     const year = date.getFullYear();
     const month = `0${date.getMonth() + 1}`.slice(-2);
@@ -36,8 +37,13 @@ const convertDate = (dateString) => {
     const hours = `0${date.getHours()}`.slice(-2);
     const minutes = `0${date.getMinutes()}`.slice(-2);
     const seconds = `0${date.getSeconds()}`.slice(-2);
-
-    return `${day}.${month}.${year} ${hours}:${minutes}:${seconds}`;
+    return dateFormat
+        .replaceAll("${day}", day)
+        .replaceAll("${month}", month)
+        .replaceAll("${year}", year)
+        .replaceAll("${hours}", hours)
+        .replaceAll("${minutes}", minutes)
+        .replaceAll("${seconds}", seconds);
 };
 
 convertButton.addEventListener("click", () => {
