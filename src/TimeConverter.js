@@ -1,4 +1,8 @@
-const times = "2019-03-01 08:55:28\n" +
+const inputArray = document.getElementById("inputArray");
+const convertButton = document.getElementById("convertButton");
+const output = document.getElementById("output");
+
+inputArray.textContent = "2019-03-01 08:55:28\n" +
     "2019-03-01 08:51:34\n" +
     "2018-04-11 19:48:03\n" +
     "2018-03-18 21:14:37\n" +
@@ -22,7 +26,7 @@ const times = "2019-03-01 08:55:28\n" +
     "2017-05-26 19:39:47\n" +
     "2017-04-27 18:57:41\n" +
     "2017-03-18 17:41:27\n" +
-    "2017-03-17 19:30:12\n";
+    "2017-03-17 19:30:12";
 
 const convertDate = (dateString) => {
     const date = new Date(dateString);
@@ -36,6 +40,11 @@ const convertDate = (dateString) => {
     return `${day}.${month}.${year} ${hours}:${minutes}:${seconds}`;
 };
 
-times.split("\n").forEach(time => {
-    console.log(convertDate(time));
+convertButton.addEventListener("click", () => {
+    const inputValues = inputArray.value.split("\n");
+    output.innerHTML = "";
+    inputValues.forEach(value => {
+        const convertedDate = convertDate(value);
+        output.innerHTML += convertedDate +'<br/>';
+    });
 });
